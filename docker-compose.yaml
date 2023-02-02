@@ -6,7 +6,7 @@ services:
     container_name: realworld-docker-frontend
     command: serve -s build -l 3000
     ports:
-    - "3000:3000"
+      - "3000:3000"
     restart: unless-stopped
 
   api:
@@ -15,7 +15,7 @@ services:
     command: npm run start
     restart: unless-stopped
     ports:
-    - "3001:3001"
+      - "3001:3001"
     environment:
       - PORT=3001
       - HOST=http://realworld-docker.com
@@ -29,6 +29,7 @@ services:
     command: npm run start
     restart: unless-stopped
     ports:
+      - "3002:3002"
     environment:
       - PORT=3002
       - HOST=http://realworld-docker.com
@@ -40,14 +41,14 @@ services:
     image: mongo:latest
     container_name: realworld-docker-api-db
     volumes:
-    - mongodb_api:/data/db
+      - mongodb_api:/data/db
 
   auth_db:
     image: mongo:latest
     container_name: realworld-docker-auth-db
     volumes:
-    - mongodb_auth:/data/db
+      - mongodb_auth:/data/db
 
 volumes:
-    mongodb_api:
-    mongodb_auth:
+  mongodb_api:
+  mongodb_auth:
